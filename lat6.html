@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="pesan">TAMPIL PESAN</button>
+        <h3>MASUKKAN NAMA GURU</h3>
+        <form @submit.prevent>
+            <input type="text" name="namaSiswa" id="idSiswa" @keyup.enter="simpan" v-model="guru">
+            <button type="button" @click="simpan">Simpan</button>
+        </form>
+        <br><br>
+        <table border="1" style="border-collapse: collapse" v-if="dataGuru.length > 0">
+            <tr>
+                <thead>
+                    <th style="width: 30px">#</th>
+                    <th style="width: 200px">Nama Guru</th>
+                </thead>
+            <tr>
+                <tbody v-for="(guru, index) in dataGuru" :key="index">
+                    <td>{{index+1}}</td>
+                    <td>{{guru}}</td>
+                </tbody>
+            </tr>
+            </tr>
+        </table>
+        <h4 v-else> TIDAK ADA DATA </h4>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            methods: {
+                pesan: function () {
+                    alert("SELAMAT BELAJAR HEHE")
+                },
+                simpan: function () {
+                    this.dataGuru.push(this.guru);
+                    this.guru = "";
+                }
+            },
+            data: {
+                'dataGuru': [{
+                        'nama': 'HEHE',
+                        'kelas': 'XRPL1'
+                    },
+                    {
+                        'nama': 'HWEWE',
+                        'kelas': 'XRPL2'
+                    },
+                    {
+                        'nama': 'HAHA',
+                        'kelas': 'XIRPL1'
+                    },
+                    {
+                        'nama': 'HWAWA',
+                        'kelas': 'XIRPL2'
+                    },
+                    {
+                        'nama': 'HIHI',
+                        'kelas': 'XIIRPL1'
+                    },
+                    {
+                        'nama': 'HWIWI',
+                        'kelas': 'XIIRPL2'
+                    },
+                ],
+                'guru': '',
+            }
+        })
+    </script>
+</body>
+
+</html>
